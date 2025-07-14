@@ -6,7 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-commerce Master</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/base.css">
 </head>
 
 <body>
@@ -116,39 +122,40 @@
                 </header>
 
                 <div id="modal-1-content">
-                   <table>
-                       <thead>
-                           <tr>
-                               <th>Produto</th>
-                               <th>Descrição</th>
-                               <th>Preço</th>
-                               <th>Quantidade</th>
-                               <th>Subtotal</th>
-                               <th></th>
-                           </tr>
-                       </thead>
-                       <tbody>
-                           <tr>
-                            <td><img src="./assets/images/camiseta_roxa.jpg" alt="Camiseta Dev em Dobro - Roxa"></td>
-                            <td>Camiseta Dev em Dobro - Roxa</td>
-                            <td>R$ 89,90</td>
-                            <td><input type="number" value="1" min="1"></td>
-                            <td>R$ 89,90</td>
-                            <td><button class="deletar">Deletar</button></td>
-                           </tr>
-                       </tbody>
-                   </table>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Descrição</th>
+                                <th>Preço</th>
+                                <th>Quantidade</th>
+                                <th>Subtotal</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><img src="./assets/images/camiseta_roxa.jpg" alt="Camiseta Dev em Dobro - Roxa">
+                                </td>
+                                <td>Camiseta Dev em Dobro - Roxa</td>
+                                <td>R$ 89,90</td>
+                                <td><input type="number" value="1" min="1"></td>
+                                <td>R$ 89,90</td>
+                                <td><button class="deletar">Deletar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                     <div>
-                          <span id="total-carrinho">Total: R$ 89,90</span>
-                          <button>Finalizar Compra</button>
-                     </div>
+                    <div>
+                        <span id="total-carrinho">Total: R$ 89,90</span>
+                        <button>Finalizar Compra</button>
+                    </div>
 
+                </div>
             </div>
         </div>
-    </div>
 
-    <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+        <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
 </body>
 
 </html>
