@@ -13,25 +13,37 @@
 
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/cabecalho.css">
 </head>
 
 <body>
-    <header>
-        <a href="/">
-            <img src="assets/images/logo.svg" alt="Dev em Dobro Logo" title="Dev em Dobro">
-        </a>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/sobre">Sobre</a></li>
-                <li><a href="/produtos">Produtos</a></li>
-                <li><a href="/perguntas">Perguntas Frequentes</a></li>
-                <li><a href="/contatos">Fale Conosco</a></li>
-            </ul>
-        </nav>
-        <button>
-            <img src="./assets/images/icone_carrinho.svg" alt="Carrinho de Compras" title="Carrinho de Compras">
-        </button>
+    <header class="cabecalho">
+        <div class="header-conteudo">
+            <div class="header-esquerda">
+
+                <button class="menu-hamburguer">
+                    <span class="linha"></span>
+                    <span class="linha"></span>
+                    <span class="linha"></span>
+                </button>
+                <a class="logo" href="/">
+                    <img src="assets/images/logo.svg" alt="Dev em Dobro Logo" title="Dev em Dobro">
+                </a>
+            </div>
+            <nav class="menu-principal">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/sobre">Sobre</a></li>
+                    <li><a href="/produtos">Produtos</a></li>
+                    <li><a href="/perguntas">Perguntas Frequentes</a></li>
+                    <li><a href="/contatos">Fale Conosco</a></li>
+                </ul>
+            </nav>
+            <button class="botao-carrinho" data-micromodal-trigger="modal-1">
+                <img src="./assets/images/icone_carrinho.svg" alt="Carrinho de Compras" title="Carrinho de Compras" />
+                <span id="contador-carrinho">0</span>
+            </button>
+        </div>
     </header>
 
     <main>
