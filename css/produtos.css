@@ -50,6 +50,8 @@ main .informacoes {
     flex-direction: column;
     padding: 0 1.5rem 1.5rem;
     gap: 0.5rem;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
 }
 
 main .informacoes span {
@@ -90,7 +92,7 @@ main .informacoes .adicionar-carrinho:hover {
     main {
         margin: 0 auto;
     }
-    
+
     main .produtos .produto {
         min-width: 368px;
     }
