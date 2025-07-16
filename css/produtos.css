@@ -10,7 +10,6 @@ main section h2 {
     font-weight: 400;
     letter-spacing: 0.1rem;
     margin-bottom: 2rem;
-
 }
 
 main .produtos ul {
@@ -19,7 +18,8 @@ main .produtos ul {
     gap: 2rem;
 }
 
-main .produtos .produto {
+.produto {
+    background-color: var(--cor-neutra-clara);
     max-width: 23rem;
     border-radius: 14px;
 }
@@ -74,11 +74,11 @@ main .informacoes .adicionar-carrinho {
     color: var(--cor-neutra-clara);
     border: none;
     border-radius: 8px;
+    font-size: 1rem;
     padding: 1rem;
     cursor: pointer;
     margin-top: 0.5rem;
     transition: background-color 0.3s ease-in-out;
-
 }
 
 main .informacoes .adicionar-carrinho:hover {
@@ -87,6 +87,10 @@ main .informacoes .adicionar-carrinho:hover {
 
 
 @media (min-width: 769px) {
+    main {
+        margin: 0 auto;
+    }
+    
     main .produtos .produto {
         min-width: 368px;
     }
