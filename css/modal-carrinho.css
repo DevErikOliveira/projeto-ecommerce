@@ -133,8 +133,8 @@ td .btn-remover {
 
 
 @media (min-width: 769px) {
-  .modal.modal.is-open {
-    display: flex;
+  .modal.is-open {
+    display: none;
     justify-content: center;
     align-items: center;
     background-color: rgba(00, 00, 00, 0.8);

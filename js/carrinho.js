@@ -1,0 +1,67 @@
+/*
+Objetivo 1 - quando clicar no botão de adicionar ao carrinho:
+    - atualizar o contador
+    - adicionar o produto no localStorage
+    - atualizar a tabela HTML do carrinho
+    parte 1: vamos adicionar +1 no ícone do carrinho
+    passo 1 - pegar os botoes de adicionar ao carrinho do html
+    passo 2 - adicionar um evento nos botões para ouvir o evento de click (ação)
+    passo 3 - pegar as informações do produto clicado e colocar no localStorage
+    passo 4 - atualizar o contador do carrinho
+    passo 5 - renderizar a tabela do carrinho na tela
+
+Objetivo 2 - remover produtos do carrinho:
+    - ouvir o botão de deletar
+    - remover do localStorage
+    - atualizar o DOM e o total
+
+Objetivo 3 - atualizar valores do carrinho:
+    - ouvir mudanças de quantidade
+    - recalcular total individual
+    - recalcular total geral
+*/
+
+// Objetivo 1 - passo 1:
+const botoesAdicionarAoCarrinho = document.querySelectorAll('.adicionar-carrinho');
+
+// Objetivo 1 - passo 2:
+botoesAdicionarAoCarrinho.forEach((botao) => {
+    botao.addEventListener('click', (evento) => {
+        console.log("Botão 'adicionar ao carrinho' clicado!");
+        // Objetivo 1 - passo 3:
+        const elementoProduto = evento.target.closest(".produto");
+        const produtoId = elementoProduto.getAttribute("data-id"); //ou pode ser elementoProduto.dataset.id
+        const produtoNome = elementoProduto.querySelector(".nome").textContent;
+        const produtoImagem = elementoProduto.querySelector("img").getAttribute("src");
+        const produtoPreco = parseFloat(elementoProduto.querySelector(".preco").textContent.replace("R$ ", "").replace(".", "").replace(",", "."));
+        
+        //buscar a lista de produtos no localStorage
+        const carrinho = obterProdutosDoCarrinho();
+
+        //testar se o produto já existe np carrinho
+        const existeProduto = carrinho.find((produto) => produto.id === produtoId);
+        //se existe produto, incrementar a quantidade
+        if (existeProduto) {
+            existeProduto.quantidade += 1;
+        } else {
+            //se não existe, adicionar o produto com quantidade 1
+            const produto = {
+                id: produtoId,
+                nome: produtoNome,
+                imagem: produtoImagem,
+                preco: produtoPreco,
+                quantidade: 1
+            };
+            carrinho.push(produto);
+        }
+    });
+
+}); 
+
+function salvarProdutosNoCarrinho(carrinho) {
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+}
+function obterProdutosDoCarrinho() {
+     const produtos = localStorage.getItem("carrinho");
+     return produtos ? JSON.parse(produtos) : [];
+}
