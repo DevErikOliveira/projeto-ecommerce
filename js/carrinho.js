@@ -57,6 +57,7 @@ botoesAdicionarAoCarrinho.forEach((botao) => {
 
         salvarProdutosNoCarrinho(carrinho);
         atualizarContadorCarrinho();
+        renderizarTabelaDoCarrinho();
     });
 
 });
@@ -82,3 +83,27 @@ function atualizarContadorCarrinho() {
 }
 
 atualizarContadorCarrinho();
+
+// Objetivo 1 - passo 5: renderizar a tabela do carrinho na tela
+
+function renderizarTabelaDoCarrinho() {
+    const produtos = obterProdutosDoCarrinho();
+    const corpoTabela = document.querySelector("#modal-1-content tbody");
+
+    corpoTabela.innerHTML = ""; // Limpar o conteúdo atual da tabela
+
+    produtos.forEach(produto => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td class="td-produto"><img src="${produto.imagem}" alt="${produto.nome}">
+                        </td>
+                        <td>${produto.nome}</td>
+                        <td class="td-preco-unitario">R$ ${produto.preco.toFixed(2).replace(".", ",")}</td>
+                        <td class="td-quantidade"><input type="number" value="${produto.quantidade}" min="1"></td>
+                        <td class="td-subtotal">R$ ${produto.preco.toFixed(2).replace(".", ",")}</td>
+                        <td><button id="deletar" class="btn-remover" data-id="${produto.id}"></button></td>`;
+        corpoTabela.appendChild(tr);
+    });
+}
+
+renderizarTabelaDoCarrinho();
+
