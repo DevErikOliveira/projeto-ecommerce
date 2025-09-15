@@ -11,7 +11,7 @@ Objetivo 1 - quando clicar no botão de adicionar ao carrinho:
     passo 5 - renderizar a tabela do carrinho na tela
 
 Objetivo 2 - remover produtos do carrinho:
-    - ouvir o botão de deletar
+    passo 1- ouvir o botão de deletar
     - remover do localStorage
     - atualizar o DOM e o total
 
@@ -107,3 +107,23 @@ function renderizarTabelaDoCarrinho() {
 
 renderizarTabelaDoCarrinho();
 
+//Objetivo 2 - remover produtos do carrinho:
+    //passo 1- ouvir o botão de deletar
+
+const corpoTabela = document.querySelector("#modal-1-content table tbody");
+corpoTabela.addEventListener("click", evento => {
+    if (evento.target.classList.contains('btn-remover')) {
+        const id = evento.target.dataset.id;
+        removerProdutosDoCarrinho(id);
+    }
+})
+
+function removerProdutosDoCarrinho(id) {
+    const produtos = obterProdutosDoCarrinho();
+
+    //filtra os produtos que não tem o id passado por parametro 
+    const carrinhoAtualizado = produtos.filter(produto => produto.id !== id);
+    salvarProdutosNoCarrinho(carrinhoAtualizado);
+    atualizarContadorCarrinho();
+    renderizarTabelaDoCarrinho();
+}
