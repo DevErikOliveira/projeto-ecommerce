@@ -34,7 +34,7 @@ botoesAdicionarAoCarrinho.forEach((botao) => {
         const produtoNome = elementoProduto.querySelector(".nome").textContent;
         const produtoImagem = elementoProduto.querySelector("img").getAttribute("src");
         const produtoPreco = parseFloat(elementoProduto.querySelector(".preco").textContent.replace("R$ ", "").replace(".", "").replace(",", "."));
-        
+
         //buscar a lista de produtos no localStorage
         const carrinho = obterProdutosDoCarrinho();
 
@@ -54,14 +54,31 @@ botoesAdicionarAoCarrinho.forEach((botao) => {
             };
             carrinho.push(produto);
         }
+
+        salvarProdutosNoCarrinho(carrinho);
+        atualizarContadorCarrinho();
     });
 
-}); 
+});
 
 function salvarProdutosNoCarrinho(carrinho) {
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
 }
 function obterProdutosDoCarrinho() {
-     const produtos = localStorage.getItem("carrinho");
-     return produtos ? JSON.parse(produtos) : [];
+    const produtos = localStorage.getItem("carrinho");
+    return produtos ? JSON.parse(produtos) : [];
 }
+
+// passo 4 - atualizar o contador do carrinho de compras
+function atualizarContadorCarrinho() {
+    const carrinho = obterProdutosDoCarrinho();
+    let total = 0;
+
+    carrinho.forEach((produto) => {
+        total += produto.quantidade;
+    });
+
+    document.getElementById("contador-carrinho").textContent = total;
+}
+
+atualizarContadorCarrinho();
