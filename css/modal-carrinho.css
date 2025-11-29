@@ -1,78 +1,111 @@
+/* =================================
+   Modal Geral (Overlay)
+   ================================= */
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    display: block;
+  display: none; /* Escondido por padrão */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Fundo escurecido */
+  z-index: 1000; /* Garante que o modal fique na frente */
 }
 
+/* Estado visível do modal */
 .modal.is-open {
-    display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* =================================
+   Container do Modal (A "Janela")
+   ================================= */
 .modal .container {
-    background-color: var(--cor-neutra-escura);
-    color: var(--cor-neutra-clara);
-    display: flex;
-    flex-direction: column;
-    padding: 2.5rem 1.2rem;
-    height: 100vh;
+  background-color: var(--cor-cinza-escura);
+  color: var(--cor-neutra-clara);
+  
+  /* Tamanho e espaçamento */
+  width: 90%;
+  max-width: 720px; /* Limite em telas grandes */
+  height: auto;
+  max-height: 90vh; /* Limite de altura para não ocupar a tela toda */
+  padding: 1.5rem;
+  margin: 0 auto;
 
+  /* Layout e scroll */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Adiciona scroll se o conteúdo for maior que a altura */
+  border-radius: 8px; /* Cantos arredondados */
 }
 
+/* =================================
+   Cabeçalho do Modal
+   ================================= */
 .modal header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-shrink: 0; /* Impede que o header encolha */
 }
 
 .modal header h2 {
-    font-size: 400;
-    letter-spacing: 0.1rem;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
 }
 
 .modal header .fechar {
-    background-image: url(../assets/images/icone_fechar.svg);
-    width: 1.5rem;
-    height: 1.5rem;
-    background-color: transparent;
-    border: 0;
-    cursor: pointer;
+  background-image: url(../assets/images/icone_fechar.svg);
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.th-produto,
-.th-subtotal,
-.td-produto,
-.td-subtotal {
-    display: none;
-}
-
-tbody td {
-    padding: 0.8rem;
-    vertical-align: middle;
-    background-color: var(--cor-cinza-escura);
-    color: var(--cor-roxa-clara);
-    letter-spacing: 0.1rem;
+/* =================================
+   Tabela de Produtos
+   ================================= */
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
 thead th {
-    padding: 0.8rem;
-    letter-spacing: 0.1rem;
+  padding: 0.8rem;
+  letter-spacing: 0.1rem;
+  text-align: left;
+  background-color: var(--cor-neutra-escura);
 }
 
-td.td-preco-unitario {
+tbody td {
+  padding: 0.8rem;
+  vertical-align: middle;
+  background-color: var(--cor-cinza-escura);
+  color: var(--cor-roxa-clara);
+  letter-spacing: 0.1rem;
+  border-bottom: 1px solid var(--cor-neutra-escura);
+}
+
+td.td-preco-unitario,
+.td-subtotal {
   color: var(--cor-neutra-clara);
   font-size: 0.9rem;
   font-weight: 300;
   white-space: nowrap;
 }
 
+td.td-quantidade {
+  text-align: center;
+}
 
 td.td-quantidade input {
-  width: 3rem;
+  width: 3.5rem;
   padding: 4px;
   background-color: transparent;
   border: 1px solid var(--cor-primaria);
@@ -82,10 +115,8 @@ td.td-quantidade input {
   text-align: center;
 }
 
-
 td .btn-remover {
   display: block;
-  background-image: url(../assets/images/icone_deletar.svg);
   width: 1.5rem;
   height: 1.5rem;
   background-color: transparent;
@@ -95,120 +126,136 @@ td .btn-remover {
   margin: auto;
 }
 
+td .btn-remover img {
+  width: 100%;
+  height: 100%;
+}
 
+td img {
+  width: 3rem;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* Ocultar colunas em telas menores */
+.th-produto, .th-subtotal, .td-produto, .td-subtotal {
+  display: none;
+}
+
+
+/* =================================
+   Rodapé do Modal (Preços, Frete, etc.)
+   ================================= */
 .container-preco {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 3rem;
+  align-items: stretch; /* Alinha itens para preencher a largura */
+  gap: 1.5rem;
+  margin-top: 2rem;
+  flex-shrink: 0; /* Impede que o rodapé encolha */
 }
 
+.container-cep-frete {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
-.total-carrinho {
-  background-color: var(--cor-cinza-escura);
+.container-cep-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+#input-cep {
+  padding: 8px;
   width: 100%;
-  padding: 1rem 0.5rem;
-  font-size: 2rem;
-  letter-spacing: 0.1rem;
+  max-width: 220px;
+  border: 1px solid var(--cor-primaria);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--cor-primaria);
+  font-size: 1rem;
+  outline: none;
 }
 
+#btn-calcular-frete {
+  padding: 8px 20px;
+  border: solid 1px var(--cor-primaria);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--cor-primaria);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.container-preco-total {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 1rem;
+}
+
+#subtotal-pedidos, #valor-frete {
+  color: #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#total-carrinho {
+  color: var(--cor-primaria);
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 8px;
+  display: block;
+  text-align: right;
+}
 
 .finalizar-compra {
   color: var(--cor-neutra-clara);
   background-color: var(--cor-primaria);
   width: 100%;
   padding: 1rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
   cursor: pointer;
   letter-spacing: 0.1rem;
+  border: none;
+  border-radius: 6px;
   transition: background-color 0.3s ease-in-out;
 }
-
 
 .finalizar-compra:hover {
   background-color: var(--cor-primaria-hover);
 }
 
 
+/* =================================
+   Estilos para Telas Maiores (Desktop)
+   ================================= */
 @media (min-width: 769px) {
-  .modal.is-open {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(00, 00, 00, 0.8);
-  }
-
-
-  .modal .container {
-    background-color: var(--cor-cinza-escura);
-    max-width: 720px;
-    height: auto;
-    padding: 1.5rem;
-    margin: 0 auto;
-  }
-
-
-  .modal .container th {
-    background-color: var(--cor-neutra-escura);
-  }
-
-
-  table {
-    border-collapse: collapse;
-  }
-
-
-  tbody td {
-    border: 2px solid var(--cor-neutra-escura);
-  }
-
-
-  .th-produto,
-  .th-total,
-  .td-produto,
-  .td-subtotal {
+  /* Mostra colunas que estavam ocultas */
+  .th-produto, .th-subtotal, .td-produto, .td-subtotal {
     display: table-cell;
   }
 
-
-  .td-subtotal {
-    white-space: nowrap;
-    font-size: 1rem;
-    font-weight: 300;
-    color: var(--cor-neutra-clara);
-  }
-
-
-  td img {
-    width: 3rem;
-    height: auto;
-    border-radius: 4px;
-  }
-
-
   .container-preco {
-    display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  
+  .container-preco-total {
     align-items: flex-end;
   }
 
-
-  .total-carrinho {
-    text-align: right;
-  }
-
-
   .finalizar-compra {
-    width: 369px;
-    font-size: 1.2rem;
-    font-weight: 300;
-    letter-spacing: 0.1rem;
+    width: auto;
+    min-width: 250px;
   }
 
-
-  .td-quantidade {
-    text-align: center;
+  .container-cep-inputs {
+    flex-direction: row;
   }
 }
