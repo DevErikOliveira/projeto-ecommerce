@@ -82,6 +82,15 @@ function atualizarValorTotalDoCarrinho() {
  * Função principal que atualiza o estado completo do carrinho (contador, tabela e total).
  */
 function atualizarCarrinhoETabela() {
+    const carrinho = obterProdutosDoCarrinho();
+    const containerPreco = document.querySelector(".container-preco");
+
+    if(carrinho.length === 0){
+        containerPreco.style.display = "none";
+    } else {
+        containerPreco.style.display = "flex";
+    }
+
     atualizarContadorCarrinho();
     renderizarTabelaDoCarrinho();
     atualizarValorTotalDoCarrinho();

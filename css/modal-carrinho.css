@@ -84,7 +84,7 @@ thead th {
 }
 
 tbody td {
-  padding: 0.8rem;
+  padding: 0.5rem;
   vertical-align: middle;
   background-color: var(--cor-cinza-escura);
   color: var(--cor-roxa-clara);
@@ -116,19 +116,19 @@ td.td-quantidade input {
 }
 
 td .btn-remover {
-  display: block;
+  display: flex;
+  justify-content: center;
   width: 1.5rem;
   height: 1.5rem;
   background-color: transparent;
   border: none;
-  padding: 0.5rem;
   cursor: pointer;
   margin: auto;
 }
 
 td .btn-remover img {
-  width: 100%;
-  height: 100%;
+  width: 20px;
+  height: 20px;
 }
 
 td img {
@@ -149,8 +149,7 @@ td img {
 .container-preco {
   display: flex;
   flex-direction: column;
-  align-items: stretch; /* Alinha itens para preencher a largura */
-  gap: 1.5rem;
+  align-items: center; /* Alinha itens para preencher a largura */
   margin-top: 2rem;
   flex-shrink: 0; /* Impede que o rodapé encolha */
 }
@@ -164,8 +163,9 @@ td img {
 .container-cep-inputs {
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 8px;
-  align-items: flex-start;
+  align-items: center;
 }
 
 #input-cep {
@@ -181,7 +181,8 @@ td img {
 }
 
 #btn-calcular-frete {
-  padding: 8px 20px;
+  width: 100%;
+  padding: 8px 5px;
   border: solid 1px var(--cor-primaria);
   border-radius: 6px;
   background: transparent;
@@ -197,20 +198,42 @@ td img {
   font-size: 1rem;
 }
 
+span .valor {
+  width: 66px;
+  font-weight: bold;
+  margin-left: 8px; 
+  color: var(--cor-primaria);
+  background-color: var(--cor-roxa-clara);
+  border-radius: 6px;
+}
+
 #subtotal-pedidos, #valor-frete {
   color: #e0e0e0;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  height: auto;
+  margin: 8px 0 8px;
+}
+
+#valor-frete {
+  display: none;
 }
 
 #total-carrinho {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: auto;
+  background-color: var(--cor-roxa-clara);
+  border: solid 1px var(--cor-primaria-hover);
+  border-radius: 6px;
   color: var(--cor-primaria);
   font-size: 1.5rem;
   font-weight: bold;
-  margin-top: 8px;
-  display: block;
-  text-align: right;
+  margin: 8px 0 8px;
 }
 
 .finalizar-compra {
@@ -241,13 +264,22 @@ td img {
   }
 
   .container-preco {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
   }
   
   .container-preco-total {
-    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .container-cep-frete {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
   }
 
   .finalizar-compra {
@@ -256,6 +288,7 @@ td img {
   }
 
   .container-cep-inputs {
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
   }
 }
