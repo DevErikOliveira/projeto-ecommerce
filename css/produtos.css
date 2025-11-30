@@ -1,6 +1,7 @@
 main {
     grid-area: main;
     padding: 1rem;
+    padding-top: 100px;
 
 }
 

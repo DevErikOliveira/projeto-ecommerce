@@ -194,3 +194,49 @@ if (corpoTabelaCarrinho) {
 
 // Inicializa o carrinho ao carregar a página para refletir o estado do localStorage
 document.addEventListener('DOMContentLoaded', atualizarCarrinhoETabela);
+
+
+
+
+// ================================== Usando o N8N para calcular o frete
+// ==================================
+
+async function calcularFrete(cep) {
+    const url = 'https://erikteste1.app.n8n.cloud/webhook-test/03820723-f073-4036-a17b-b8dc7a9ade84';
+    
+    try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-User-Agent': 'EcommerceDoErik/1.0(negocios.erik@gmail.com)'
+                },
+                body: JSON.stringify({ cep })
+            });
+            if (!response.ok) {
+                throw new Error('Erro ao calcular o frete');
+            }
+            const resultado = await response.json();
+            console.log("Resposta do N8N:", resultado);
+            return resultado.frete;
+    } catch (error) {
+        console.error("Erro ao calcular o frete:", error);
+        return null;
+    }
+}
+
+//Adiciona o evento ao botão calcular frete
+const btnCalcularFrete = document.getElementById("btn-calcular-frete");
+const inputCep = document.getElementById("input-cep");
+const valorFrete = document.getElementById("valor-frete");
+
+    btnCalcularFrete.addEventListener("click", async () => {
+        const cep = inputCep.value.trim();
+        valorFrete.textContent = "Calculando...";
+        const frete = await calcularFrete(cep);
+        
+       
+});
+
+
+
